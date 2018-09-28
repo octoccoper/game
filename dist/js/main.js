@@ -12,31 +12,26 @@ btnPlayer1.addEventListener("click", changeScore1);
 btnPlayer2.addEventListener("click", changeScore2);
 
 function changeScore1() {
-    if (parseInt(dataPlayer1.textContent) < parseInt(stopNumber.textContent)) {
-        if (parseInt(dataPlayer1.textContent) !== parseInt(scoreNumber.textContent)) {
-            dataPlayer1.textContent = parseInt(++scoreNumPlayer1);
-        }
-    } else {
+    dataPlayer1.textContent = parseInt(++scoreNumPlayer1);
+    if (parseInt(dataPlayer1.textContent) === parseInt(scoreNumber.value)) {
         dataPlayer1.style.color = "green";
+        btnPlayer1.disabled = true;
         btnPlayer2.disabled = true;
     }
 }
 
 function changeScore2() {
-    if (parseInt(dataPlayer2.textContent) < parseInt(stopNumber.textContent)) {
-        if (parseInt(dataPlayer2.textContent) !== parseInt(scoreNumber.textContent)) {
-            dataPlayer2.textContent = parseInt(++scoreNumPlayer2);
-        }
-    } else {
-        dataPlayer2.style.color = "green";
-        btnPlayer1.disabled = true;
+    dataPlayer2.textContent = parseInt(++scoreNumPlayer2);
+    if (parseInt(dataPlayer2.textContent) === parseInt(scoreNumber.value)) {
+            dataPlayer2.style.color = "green";
+            btnPlayer1.disabled = true;
+            btnPlayer2.disabled = true;
     }
 }
 
 scoreNumber.addEventListener("change", function () {
     stopNumber.textContent = this.value;
 });
-
 
 reset.addEventListener("click", function () {
     scoreNumPlayer1 = scoreNumPlayer2 = dataPlayer1.textContent = dataPlayer2.textContent = 0;
